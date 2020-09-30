@@ -1,7 +1,16 @@
 import React from "react";
+import useDarkMode from "use-dark-mode";
+import { Button, Typography } from "@material-ui/core";
 
-const IndexPage = () => (
-    <div>Hello Next.js 👋</div>
-)
+const IndexPage = () => {
+    const darkMode = useDarkMode(false);
 
-export default IndexPage
+    return (
+        <>
+            <Button onClick={darkMode.toggle}>toggle theme</Button>
+            <Typography color="error">blue is dark</Typography>
+        </>
+    );
+};
+
+export default IndexPage;

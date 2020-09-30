@@ -1,6 +1,7 @@
-import { red } from "@material-ui/core/colors";
+import { blue } from "@material-ui/core/colors";
 
 export default {
+    type: "dark",
     palette: {
         primary: {
             main: "#556cd6",
@@ -9,7 +10,7 @@ export default {
             main: "#19857b",
         },
         error: {
-            main: red.A400,
+            main: blue.A400,
         },
         background: {
             default: "#fff",
