@@ -1,10 +1,4 @@
-import Document, {
-    DocumentContext,
-    Html,
-    Head,
-    Main,
-    NextScript,
-} from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet as StyledComponentSheets } from "styled-components";
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from "@material-ui/styles";
 
@@ -23,32 +17,31 @@ export default class MyDocument extends Document {
     }
 }
 
-MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-    const styledComponentSheets = new StyledComponentSheets();
-    const materialUiServerStyleSheets = new MaterialUiServerStyleSheets();
+MyDocument.getInitialProps = async ctx => {
+    const styledComponentsSheet = new StyledComponentSheets();
+    const materialSheets = new MaterialUiServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     try {
         ctx.renderPage = () =>
             originalRenderPage({
                 enhanceApp: App => props =>
-                    styledComponentSheets.collectStyles(
-                        materialUiServerStyleSheets.collect(<App {...props} />)
+                    styledComponentsSheet.collectStyles(
+                        materialSheets.collect(<App {...props} />)
                     ),
             });
-
         const initialProps = await Document.getInitialProps(ctx);
         return {
             ...initialProps,
             styles: (
                 <>
                     {initialProps.styles}
-                    {styledComponentSheets.getStyleElement()}
-                    {materialUiServerStyleSheets.getStyleElement()}
+                    {styledComponentsSheet.getStyleElement()}
+                    {materialSheets.getStyleElement()}
                 </>
             ),
         };
     } finally {
-        styledComponentSheets.seal();
+        styledComponentsSheet.seal();
     }
 };

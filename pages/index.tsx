@@ -1,14 +1,22 @@
 import React from "react";
+import { Button } from "@material-ui/core";
 import useDarkMode from "use-dark-mode";
-import { Button, Typography } from "@material-ui/core";
+import StyledButton from "../src/comoponents/Button";
 
 const IndexPage = () => {
-    const darkMode = useDarkMode(false);
-
+    const mode = useDarkMode();
     return (
         <>
-            <Button onClick={darkMode.toggle}>toggle theme</Button>
-            <Typography color="error">blue is dark</Typography>
+            <div>
+                <Button
+                    onClick={mode.enable}
+                    variant="contained"
+                    color="secondary"
+                >
+                    On
+                </Button>
+                <StyledButton onClick={mode.disable}>Off</StyledButton>
+            </div>
         </>
     );
 };

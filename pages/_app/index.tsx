@@ -7,25 +7,26 @@ import {
 } from "@material-ui/styles";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { createMuiTheme, Theme } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core";
 import useDarkMode from "use-dark-mode";
 // #endregion Global Imports
 
 // #region Local Imports
-import light from "../../src/theme/light";
-import dark from "../../src/theme/dark";
+import lightTheme from "../../src/theme/light";
+import darkTheme from "../../src/theme/dark";
 // #endregion Local Imports
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     // For material-UI's SSR -> https://material-ui.com/guides/server-rendering/
+    const mode = useDarkMode(false);
+    const theme = createMuiTheme(mode.value ? darkTheme : lightTheme);
+
     useEffect(() => {
         const jssStyles = document.querySelector("#jss-server-side");
         if (jssStyles) {
             jssStyles.parentElement?.removeChild(jssStyles);
         }
     }, []);
-    const darkMode = useDarkMode(false);
-    const theme: Theme = createMuiTheme(darkMode.value ? light : dark);
 
     return (
         <StylesProvider injectFirst>
