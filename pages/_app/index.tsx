@@ -14,6 +14,7 @@ import useDarkMode from "use-dark-mode";
 // #region Local Imports
 import lightTheme from "../../src/theme/light";
 import darkTheme from "../../src/theme/dark";
+import "../../public/font/inter.css";
 // #endregion Local Imports
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {

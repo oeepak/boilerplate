@@ -1,9 +1,8 @@
-import React from "react";
 import { Button } from "@material-ui/core";
 import useDarkMode from "use-dark-mode";
 import StyledButton from "../src/comoponents/Button";
 
-const IndexPage = () => {
+const IndexPage = (): JSX.Element => {
     const mode = useDarkMode();
     return (
         <>
